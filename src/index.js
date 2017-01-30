@@ -1,6 +1,8 @@
 import ViewportEvents from './events.js';
 import ViewportMonitor from './monitor.js'
 
+const IDENTITY = (x) => x;
+
 export const recompute = ViewportEvents.recompute;
 export default function Wrapper(selector, ...events) {
   events = events.length ? events : [ 'any' ];
@@ -13,7 +15,7 @@ export default function Wrapper(selector, ...events) {
       static DecoratedComponent = component;
 
       constructor(props) {
-        super(props, selector, events);
+        super(props, selector || IDENTITY, events);
       }
     }
   }
