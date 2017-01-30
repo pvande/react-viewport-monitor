@@ -3,10 +3,10 @@ import Emitter from './events.js';
 import viewport from './viewport.js';
 
 export default class ViewportMonitor extends React.PureComponent {
-  constructor(props, collector, events) {
+  constructor(props, selector, events) {
     super(props);
 
-    this.collector = collector;
+    this.selector = selector;
     this.events = events;
     this.state = viewport();
   }
@@ -32,7 +32,7 @@ export default class ViewportMonitor extends React.PureComponent {
   }
 
   render() {
-    const props = { ...this.props, ...this.collector(this.state, this.props) };
+    const props = { ...this.props, ...this.selector(this.state, this.props) };
     return React.createElement(this.constructor.DecoratedComponent, props);
   }
 }
