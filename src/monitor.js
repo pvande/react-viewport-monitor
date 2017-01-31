@@ -8,14 +8,14 @@ export default class ViewportMonitor extends React.PureComponent {
 
     this.selector = selector;
     this.events = events;
-    this.state = viewport();
+    this.state = selector(viewport(), props);
   }
 
   refresh = (viewport) => {
     if (this.lastViewport === viewport) return;
 
     this.lastViewport = viewport;
-    this.setState(viewport);
+    this.setState(this.selector(viewport, this.props));
   }
 
   componentWillMount() {
@@ -31,8 +31,15 @@ export default class ViewportMonitor extends React.PureComponent {
     for (let event of this.events) { Emitter.off(event, this.refresh) }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props === nextProps) return;
+    if (this.selector.length == 1) return;
+
+    this.setState(this.selector(viewport, nextProps));
+  }
+
   render() {
-    const props = { ...this.props, ...this.selector(this.state, this.props) };
-    return React.createElement(this.constructor.DecoratedComponent, props);
+    const Component = this.constructor.DecoratedComponent;
+    return React.createElement(Component, { ...this.props, ...this.state });
   }
 }
