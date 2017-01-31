@@ -60,4 +60,9 @@ it will receive as additional props.
 * Scroll and resize events are throttled to once per animation frame.
 * Only one DOM event subscription per event.
 
+## Disadvantages
+
+* Currently only works with ReactDOM.
+* Currently only works at the `window` level.
+
 [HOC]: https://facebook.github.io/react/docs/higher-order-components.html
