@@ -15,7 +15,7 @@ const viewportSelector = ({ top }) => ({ viewportEdge: top });
 export default class Fixed extends React.PureComponent {
   render() {
     return (
-      <div style={{ position: absolute, top: this.props.viewportEdge }}>
+      <div style={{ position: 'absolute', top: this.props.viewportEdge }}>
         I appear to be `position: fixed`!
       </div>
     );

@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rimraf lib",
     "build": "babel src --loose --out-dir lib",
+    "examples": "webpack-dev-server --config examples/webpack.config.js -p --content-base examples/",
     "prepublish": "npm run clean && npm run build"
   },
   "repository": {

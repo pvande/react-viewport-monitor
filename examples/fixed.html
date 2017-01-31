@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Example: Emulating `position: fixed`</title>
+    <script src="http://www.jimsproch.com/react/babel-browser.js"></script>
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="bundle.js"></script>
+  </head>
+  <body>
+    <div style="background-color: blue; width: 40px; height: 6000px"></div>
+    <div style="position: fixed; left: 250px; top: 0; background-color: goldenrod">
+      I'm actually `position: fixed`!
+    </div>
+
+    <div id="app"></div>
+
+    <script type="text/babel">
+      const viewportSelector = ({ top }) => ({ viewportEdge: top });
+      const Decorator = ViewportMonitor.default(viewportSelector, 'top');
+
+      class Fixed extends React.PureComponent {
+        render() {
+          const style = {
+            backgroundColor: 'red',
+            position: 'absolute',
+            top: 0,
+            transform: `translateY(${this.props.viewportEdge}px)`,
+          };
+          return (
+            <div style={style}>
+              'I appear to be `position: fixed`!'
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(React.createElement(Decorator(Fixed)), app);
+    </script>
+  </body>
+</html>
