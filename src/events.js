@@ -7,7 +7,7 @@ export default ViewportEvents;
 
 let currentViewport = viewport();
 
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   ViewportEvents.once('initialize', () => {
     ViewportEvents.initializeEventListeners = () => {};
 
