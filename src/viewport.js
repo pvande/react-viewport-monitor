@@ -1,5 +1,7 @@
+let viewport;
+
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-  export default function viewport() {
+  viewport = function() {
     const width = Math.max(document.documentElement.clientWidth, window.innerWidth);
     const height = Math.max(document.documentElement.clientHeight, window.innerHeight);
 
@@ -10,5 +12,12 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const bottom = top + height;
 
     return { top, right, bottom, left, width, height };
-  }
+  };
+} else {
+  // TODO: Implement React Native support?
+  viewport = function() {
+    return {};
+  };
 }
+
+export default viewport;
