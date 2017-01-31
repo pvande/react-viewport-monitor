@@ -40,7 +40,8 @@
     "react-addons-test-utils": "^15.3.0",
     "react-dom": "^15.3.0",
     "rimraf": "^2.5.2",
-    "webpack": "^1.12.14"
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
   },
   "dependencies": {
     "eventemitter3": "^1.2.0",
